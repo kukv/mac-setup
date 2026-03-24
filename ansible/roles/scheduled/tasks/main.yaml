@@ -1,0 +1,6 @@
+---
+- name: Setup ansible-pull schedule
+  ansible.builtin.import_tasks: setup_schedule.yaml
+
+- name: Setup log rotation
+  ansible.builtin.import_tasks: setup_log.yaml

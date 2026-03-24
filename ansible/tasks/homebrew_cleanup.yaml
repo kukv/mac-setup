@@ -1,0 +1,4 @@
+---
+- name: Cleanup Homebrew
+  community.general.homebrew:
+    cleanup: true

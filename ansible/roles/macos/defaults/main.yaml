@@ -1,0 +1,37 @@
+---
+zsh:
+  theme: alien
+  custom_theme:
+    name: alien
+    repo: https://github.com/eendroroy/alien.git
+  alien:
+    sections_left:
+      - time
+      - user
+      - path
+      - ssh
+      - venv
+      - vcs_branch:async
+      - vcs_status:async
+      - vcs_dirty:async
+      - exit
+      - newline
+      - prompt
+    time_format: "%Y-%m-%d %H:%M:%S"
+    user_host: 1
+    theme: blue
+  plugins:
+    - git
+    - zsh-syntax-highlighting
+    - zsh-completions
+    - zsh-autosuggestions
+    - zsh-history-substring-search
+  custom_plugins:
+    - name: zsh-syntax-highlighting
+      repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    - name: zsh-completions
+      repo: https://github.com/zsh-users/zsh-completions.git
+    - name: zsh-autosuggestions
+      repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    - name: zsh-history-substring-search
+      repo: https://github.com/zsh-users/zsh-history-substring-search.git

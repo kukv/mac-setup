@@ -1,0 +1,24 @@
+---
+- name: Set git config
+  community.general.git_config:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global
+  loop:
+    # [user]
+    - { name: "user.name", value: "{{ git.user.name }}" }
+    - { name: "user.email", value: "{{ git.user.email }}" }
+    - { name: "user.signingkey", value: "{{ git.user.signing_key }}" }
+
+    # [core]
+    - { name: "core.quotepath", value: "false" }
+
+    # [gpg]
+    - { name: "gpg.format", value: "ssh" }
+    - { name: "gpg.ssh.program", value: "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" }
+
+    # [commit]
+    - { name: "commit.gpgsign", value: "true" }
+
+    # [ghq]
+    - { name: "ghq.root", value: "{{ ansible_user_dir }}/dev/ghq" }

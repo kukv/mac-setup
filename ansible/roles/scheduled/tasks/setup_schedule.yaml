@@ -1,0 +1,7 @@
+---
+- name: Deploy ansible-pull LaunchAgent
+  ansible.builtin.template:
+    src: com.kukv.mac-setup.plist.j2
+    dest: "{{ ansible_user_dir }}/Library/LaunchAgents/com.kukv.mac-setup.plist"
+    mode: "0644"
+  notify: Reload ansible-pull LaunchAgent

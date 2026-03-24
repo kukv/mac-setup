@@ -1,0 +1,24 @@
+---
+- name: Update Homebrew
+  community.general.homebrew:
+    update_homebrew: true
+  retries: 3
+  delay: 5
+  register: result
+  until: result is succeeded
+
+- name: Upgrade all Homebrew formulae
+  community.general.homebrew:
+    upgrade_all: true
+  retries: 3
+  delay: 5
+  register: result
+  until: result is succeeded
+
+- name: Upgrade all Homebrew casks
+  community.general.homebrew_cask:
+    upgrade_all: true
+  retries: 3
+  delay: 5
+  register: result
+  until: result is succeeded

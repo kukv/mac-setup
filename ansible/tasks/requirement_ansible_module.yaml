@@ -1,0 +1,5 @@
+---
+- name: Install Ansible Galaxy collections
+  ansible.builtin.command:
+    cmd: ansible-galaxy collection install -r {{ playbook_dir }}/requirements.yaml
+  changed_when: true
