@@ -21,4 +21,4 @@
     - { name: "commit.gpgsign", value: "true" }
 
     # [ghq]
-    - { name: "ghq.root", value: "{{ ansible_user_dir }}/dev/ghq" }
+    - { name: "ghq.root", value: "{{ ansible_facts["user_dir"] }}/dev/ghq" }

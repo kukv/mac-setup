@@ -1,7 +1,7 @@
 ---
 - name: Create LaunchAgents directory
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/Library/LaunchAgents"
+    path: "{{ ansible_facts["user_dir"] }}/Library/LaunchAgents"
     state: directory
     mode: "0755"
 

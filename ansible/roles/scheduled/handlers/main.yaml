@@ -1,7 +1,7 @@
 ---
 - name: Reload ansible-pull LaunchAgent
   ansible.builtin.command:
-    cmd: launchctl bootout gui/{{ ansible_user_uid }}/com.kukv.mac-setup
+    cmd: launchctl bootout gui/{{ ansible_facts["user_uid"] }}/com.kukv.mac-setup
   register: bootout_result
   failed_when: bootout_result.rc != 0 and bootout_result.rc != 3
   changed_when: bootout_result.rc == 0
@@ -9,12 +9,12 @@
 
 - name: Load ansible-pull LaunchAgent
   ansible.builtin.command:
-    cmd: launchctl bootstrap gui/{{ ansible_user_uid }} {{ ansible_user_dir }}/Library/LaunchAgents/com.kukv.mac-setup.plist
+    cmd: launchctl bootstrap gui/{{ ansible_facts["user_uid"] }} {{ ansible_facts["user_dir"] }}/Library/LaunchAgents/com.kukv.mac-setup.plist
   changed_when: true
 
 - name: Reload log rotation LaunchAgent
   ansible.builtin.command:
-    cmd: launchctl bootout gui/{{ ansible_user_uid }}/com.kukv.mac-setup-log-rotation
+    cmd: launchctl bootout gui/{{ ansible_facts["user_uid"] }}/com.kukv.mac-setup-log-rotation
   register: bootout_log_result
   failed_when: bootout_log_result.rc != 0 and bootout_log_result.rc != 3
   changed_when: bootout_log_result.rc == 0
@@ -22,5 +22,5 @@
 
 - name: Load log rotation LaunchAgent
   ansible.builtin.command:
-    cmd: launchctl bootstrap gui/{{ ansible_user_uid }} {{ ansible_user_dir }}/Library/LaunchAgents/com.kukv.mac-setup-log-rotation.plist
+    cmd: launchctl bootstrap gui/{{ ansible_facts["user_uid"] }} {{ ansible_facts["user_dir"] }}/Library/LaunchAgents/com.kukv.mac-setup-log-rotation.plist
   changed_when: true
