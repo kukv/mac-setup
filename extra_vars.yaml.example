@@ -1,9 +1,16 @@
 ---
 github:
+  # GitHub Personal Access Token
+  # Homebrew の API レート制限回避 (HOMEBREW_GITHUB_API_TOKEN) と
+  # ansible-pull のプライベートリポジトリアクセス (GITHUB_TOKEN) に使用
   token: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 git:
   user:
+    # git config user.name に設定される
     name: your-name
+    # git config user.email に設定される
     email: your-email@example.com
+    # git config user.signingkey に設定される (SSH 署名用の公開鍵)
+    # 1Password SSH Agent 経由でコミット署名に使用
     signing_key: ssh-ed25519 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
