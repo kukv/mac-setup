@@ -74,7 +74,7 @@ if [[ -f "${EXTRA_VARS_FILE}" ]]; then
 fi
 
 echo "==> Running ansible-pull (branch: ${BRANCH})..."
-ansible-pull \
+PYTHONUNBUFFERED=1 ansible-pull \
   --url "${REPO_URL}" \
   --checkout "${BRANCH}" \
   --inventory ansible/inventories/hosts.yaml \
