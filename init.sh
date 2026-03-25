@@ -55,7 +55,7 @@ fi
 echo "==> Checking Homebrew..."
 if ! command -v brew &>/dev/null; then
   echo "Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
 
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
@@ -63,7 +63,7 @@ fi
 echo "==> Checking Ansible..."
 if ! command -v ansible &>/dev/null; then
   echo "Installing Ansible..."
-  brew install ansible
+  brew install ansible < /dev/null
 fi
 
 echo "==> Installing Ansible collections..."
