@@ -66,10 +66,6 @@ if ! command -v ansible &>/dev/null; then
   brew install ansible < /dev/null
 fi
 
-echo "==> Installing Ansible collections..."
-ansible-galaxy collection install -r \
-  "https://raw.githubusercontent.com/kukv/mac-setup/${BRANCH}/ansible/requirements.yaml"
-
 EXTRA_VARS_FILE="${HOME}/.local/etc/extra_vars.yaml"
 EXTRA_VARS_OPTS=()
 if [[ -f "${EXTRA_VARS_FILE}" ]]; then
