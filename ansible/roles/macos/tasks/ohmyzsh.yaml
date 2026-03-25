@@ -2,21 +2,21 @@
 - name: Clone Oh My Zsh
   ansible.builtin.git:
     repo: "{{ zsh.ohmyzsh.repo }}"
-    dest: "{{ ansible_facts["user_dir"] }}/.oh-my-zsh"
+    dest: "{{ ansible_facts.user_dir }}/.oh-my-zsh"
     depth: 1
     version: "{{ zsh.ohmyzsh.version }}"
 
 - name: Clone Oh My Zsh custom theme
   ansible.builtin.git:
     repo: "{{ zsh.custom_theme.repo }}"
-    dest: "{{ ansible_facts["user_dir"] }}/.oh-my-zsh/custom/themes/{{ zsh.custom_theme.name }}"
+    dest: "{{ ansible_facts.user_dir }}/.oh-my-zsh/custom/themes/{{ zsh.custom_theme.name }}"
     depth: 1
     version: "{{ zsh.custom_theme.version }}"
 
 - name: Clone Oh My Zsh custom plugins
   ansible.builtin.git:
     repo: "{{ item.repo }}"
-    dest: "{{ ansible_facts["user_dir"] }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
+    dest: "{{ ansible_facts.user_dir }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
     depth: 1
     version: "{{ item.version }}"
   loop: "{{ zsh.custom_plugins }}"

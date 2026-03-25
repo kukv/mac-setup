@@ -2,7 +2,7 @@
 - name: Deploy zsh generated files
   ansible.builtin.template:
     src: "zsh/{{ item }}.generated.j2"
-    dest: "{{ ansible_facts["user_dir"] }}/.{{ item }}.generated"
+    dest: "{{ ansible_facts.user_dir }}/.{{ item }}.generated"
     mode: "0644"
   loop:
     - zshenv
@@ -12,7 +12,7 @@
 - name: Create zsh user files
   ansible.builtin.copy:
     content: ""
-    dest: "{{ ansible_facts["user_dir"] }}/.{{ item }}.user"
+    dest: "{{ ansible_facts.user_dir }}/.{{ item }}.user"
     mode: "0644"
     force: false
   loop:
@@ -23,7 +23,7 @@
 - name: Deploy zsh loader files
   ansible.builtin.template:
     src: "zsh/loader.j2"
-    dest: "{{ ansible_facts["user_dir"] }}/.{{ item }}"
+    dest: "{{ ansible_facts.user_dir }}/.{{ item }}"
     mode: "0644"
   loop:
     - zshenv

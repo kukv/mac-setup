@@ -16,7 +16,7 @@
         <string>ansible/inventories/hosts.yaml</string>
 {% if extra_vars_stat.stat.exists %}
         <string>--extra-vars</string>
-        <string>@{{ ansible_facts["user_dir"] }}/.local/etc/extra_vars.yaml</string>
+        <string>@{{ ansible_facts.user_dir }}/.local/etc/extra_vars.yaml</string>
 {% endif %}
         <string>ansible/playbook.yaml</string>
     </array>
@@ -26,7 +26,7 @@
         <key>PATH</key>
         <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
         <key>HOME</key>
-        <string>{{ ansible_facts["user_dir"] }}</string>
+        <string>{{ ansible_facts.user_dir }}</string>
     </dict>
 
     <key>StartCalendarInterval</key>

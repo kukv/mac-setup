@@ -1,12 +1,12 @@
 ---
 - name: Create iTerm2 dynamic profiles directory
   ansible.builtin.file:
-    path: "{{ ansible_facts["user_dir"] }}/Library/Application Support/iTerm2/DynamicProfiles"
+    path: "{{ ansible_facts.user_dir }}/Library/Application Support/iTerm2/DynamicProfiles"
     state: directory
     mode: "0755"
 
 - name: Deploy iTerm2 default profile
   ansible.builtin.copy:
     src: iterm2_default_profile.json
-    dest: "{{ ansible_facts["user_dir"] }}/Library/Application Support/iTerm2/DynamicProfiles/default_profile.json"
+    dest: "{{ ansible_facts.user_dir }}/Library/Application Support/iTerm2/DynamicProfiles/default_profile.json"
     mode: "0644"
