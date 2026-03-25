@@ -7,6 +7,17 @@
     GITHUB_TOKEN: "{{ github.token }}"
 
   pre_tasks:
+    - name: Validate required variables
+      ansible.builtin.assert:
+        that:
+          - github.token is defined
+          - git.user.name is defined
+          - git.user.email is defined
+          - git.user.signing_key is defined
+        fail_msg: "Required variables are missing. Create ~/.local/etc/extra_vars.yaml from extra_vars.yaml.example"
+      tags:
+        - always
+
     - name: Install Ansible Galaxy collections
       ansible.builtin.import_tasks: tasks/requirement_ansible_module.yaml
       tags:

@@ -81,6 +81,6 @@ echo "==> Running ansible-pull (branch: ${BRANCH})..."
 ansible-pull \
   --url "${REPO_URL}" \
   --checkout "${BRANCH}" \
-  --inventory ansible/inventories/localhost.yaml \
+  --inventory ansible/inventories/hosts.yaml \
   "${EXTRA_VARS_OPTS[@]}" \
   ansible/playbook.yaml

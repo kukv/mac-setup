@@ -1,4 +1,9 @@
 ---
+- name: Check extra_vars.yaml exists
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.local/etc/extra_vars.yaml"
+  register: extra_vars_stat
+
 - name: Deploy ansible-pull LaunchAgent
   ansible.builtin.template:
     src: com.kukv.mac-setup.plist.j2

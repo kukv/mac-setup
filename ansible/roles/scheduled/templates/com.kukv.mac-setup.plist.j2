@@ -14,8 +14,10 @@
         <string>{{ scheduled.branch }}</string>
         <string>--inventory</string>
         <string>ansible/inventories/hosts.yaml</string>
+{% if extra_vars_stat.stat.exists %}
         <string>--extra-vars</string>
         <string>@{{ ansible_user_dir }}/.local/etc/extra_vars.yaml</string>
+{% endif %}
         <string>ansible/playbook.yaml</string>
     </array>
 

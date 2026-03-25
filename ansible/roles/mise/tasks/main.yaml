@@ -14,22 +14,22 @@
 - name: Install mise tools
   ansible.builtin.command:
     cmd: mise install --yes
-  changed_when: true
+  register: mise_install
+  changed_when: "'installed' in mise_install.stderr"
   retries: 3
   delay: 10
-  register: result
-  until: result is succeeded
+  until: mise_install is succeeded
 
 - name: Install default Go packages
   ansible.builtin.command:
     cmd: mise exec go -- go install {{ item }}
   loop: "{{ go.default_packages }}"
-  changed_when: true
+  changed_when: false
 
 - name: Enable Node corepack
   ansible.builtin.command:
     cmd: mise exec node -- corepack enable
-  changed_when: true
+  changed_when: false
 
 - name: Create Neovim config directory
   ansible.builtin.file:

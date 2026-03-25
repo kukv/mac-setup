@@ -17,7 +17,7 @@
         "Red Component": "0.8",
         "Blue Component": "0"
       },
-      "Normal Font": "MesloLGSDZForPowerline-Regular 12",
+      "Normal Font": "HackNerdFont-Regular 12",
       "Bold Color": {
         "Green Component": "1",
         "Red Component": "1",
@@ -72,7 +72,7 @@
         "Red Component": "1",
         "Blue Component": "1"
       },
-      "Working Directory": "/Users/nonaka.koki",
+      "Working Directory": "",
       "Blinking Cursor": false,
       "Space": -1,
       "Sync Title": false,
