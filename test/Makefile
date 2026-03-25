@@ -2,11 +2,11 @@ VM_NAME      := mac-setup-test
 IMAGE        := ghcr.io/cirruslabs/macos-tahoe-base:latest
 SSH_USER     := admin
 SSH_PASS     := admin
-SSH_OPTS     := -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=5 -o LogLevel=ERROR
+SSH_OPTS     := -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=5 -o LogLevel=ERROR -o PubkeyAuthentication=no -o PreferredAuthentications=password
 PROJECT_ROOT := $(shell cd $(CURDIR)/.. && pwd)
 TAGS         ?=
 
-.PHONY: help check-deps create start provision test teardown ssh status
+.PHONY: help check-deps create start start-gui provision test teardown ssh status
 
 help: ## ヘルプを表示
 	@echo "Tart VM テスト環境"
@@ -43,9 +43,14 @@ create: check-deps ## VM を作成 (初回はイメージダウンロードに�
 	fi
 
 start: create ## VM をヘッドレスモードで起動 (ターミナルをブロック)
-	@echo "==> VM '$(VM_NAME)' を起動中..."
+	@echo "==> VM '$(VM_NAME)' をヘッドレスで起動中..."
 	@echo "    停止: Ctrl+C または別ターミナルから make teardown"
 	@tart run $(VM_NAME) --no-graphics
+
+start-gui: create ## VM を GUI 付きで起動 (macOS デスクトップを表示)
+	@echo "==> VM '$(VM_NAME)' を GUI で起動中..."
+	@echo "    停止: ウィンドウを閉じるか、別ターミナルから make teardown"
+	@tart run $(VM_NAME)
 
 provision: ## 起動中の VM にプロジェクトを同期して playbook を実行
 	@echo "==> VM の IP を取得中..."
