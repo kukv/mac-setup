@@ -1,0 +1,13 @@
+---
+# Tart VM テスト用のダミー変数
+# 実際の認証情報は含まないこと
+
+github:
+  # ダミートークン (Homebrew は未認証でも動作するがレート制限あり)
+  token: ghp_dummy_token_for_tart_vm_testing
+
+git:
+  user:
+    name: test-user
+    email: test@example.com
+    signing_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAITestDummyKeyForTartVMTesting
