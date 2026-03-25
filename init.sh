@@ -67,8 +67,11 @@ if ! command -v ansible &>/dev/null; then
 fi
 
 echo "==> Installing Ansible collections..."
-ansible-galaxy collection install -r \
-  "https://raw.githubusercontent.com/kukv/mac-setup/${BRANCH}/ansible/requirements.yaml"
+REQUIREMENTS_TMP=$(mktemp)
+trap "rm -f '${REQUIREMENTS_TMP}'" EXIT
+curl -sfL "https://raw.githubusercontent.com/kukv/mac-setup/${BRANCH}/ansible/requirements.yaml" \
+  -o "${REQUIREMENTS_TMP}"
+ansible-galaxy collection install -r "${REQUIREMENTS_TMP}"
 
 EXTRA_VARS_FILE="${HOME}/.local/etc/extra_vars.yaml"
 EXTRA_VARS_OPTS=()
