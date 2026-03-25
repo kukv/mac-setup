@@ -31,7 +31,7 @@ homebrew:
     - thebrowsercompany-dia
     - google-drive
     - microsoft-office
-    - microsoft-onedrive
+    - onedrive
     - onyx
     - parallels
     - raspberry-pi-imager
