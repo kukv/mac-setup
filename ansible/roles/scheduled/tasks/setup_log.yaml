@@ -23,3 +23,15 @@
     dest: "{{ ansible_facts.user_dir }}/Library/LaunchAgents/com.kukv.mac-setup-log-rotation.plist"
     mode: "0644"
   notify: Reload log rotation LaunchAgent
+
+- name: Check log rotation LaunchAgent is loaded
+  ansible.builtin.command:
+    cmd: launchctl list com.kukv.mac-setup-log-rotation
+  register: log_rotation_loaded
+  changed_when: false
+  failed_when: false
+
+- name: Load log rotation LaunchAgent
+  ansible.builtin.command:
+    cmd: launchctl bootstrap gui/{{ ansible_facts.user_uid }} {{ ansible_facts.user_dir }}/Library/LaunchAgents/com.kukv.mac-setup-log-rotation.plist
+  when: log_rotation_loaded.rc != 0
