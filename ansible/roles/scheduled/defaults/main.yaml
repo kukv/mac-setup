@@ -2,7 +2,8 @@
 scheduled:
   repo_url: https://github.com/kukv/mac-setup.git
   branch: main
-  hour: 9
+  weekday: 7
+  hour: 21
   minute: 0
   log_dir: "{{ ansible_user_dir }}/.local/log/ansible"
   log_retention_days: 90
