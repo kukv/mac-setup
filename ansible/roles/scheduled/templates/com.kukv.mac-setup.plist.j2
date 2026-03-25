@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.kukv.mac-setup</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/ansible-pull</string>
+        <string>--url</string>
+        <string>{{ scheduled.repo_url }}</string>
+        <string>--checkout</string>
+        <string>{{ scheduled.branch }}</string>
+        <string>--inventory</string>
+        <string>ansible/inventories/hosts.yaml</string>
+{% if extra_vars_stat.stat.exists %}
+        <string>--extra-vars</string>
+        <string>@{{ ansible_user_dir }}/.local/etc/extra_vars.yaml</string>
+{% endif %}
+        <string>ansible/playbook.yaml</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>{{ ansible_user_dir }}</string>
+    </dict>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key>
+        <integer>{{ scheduled.weekday }}</integer>
+        <key>Hour</key>
+        <integer>{{ scheduled.hour }}</integer>
+        <key>Minute</key>
+        <integer>{{ scheduled.minute }}</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>{{ scheduled.log_dir }}/mac-setup.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>{{ scheduled.log_dir }}/mac-setup.error.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

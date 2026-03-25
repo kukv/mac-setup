@@ -1,0 +1,31 @@
+---
+- name: Deploy zsh generated files
+  ansible.builtin.template:
+    src: "zsh/{{ item }}.generated.j2"
+    dest: "{{ ansible_user_dir }}/.{{ item }}.generated"
+    mode: "0644"
+  loop:
+    - zshenv
+    - zprofile
+    - zshrc
+
+- name: Create zsh user files
+  ansible.builtin.copy:
+    content: ""
+    dest: "{{ ansible_user_dir }}/.{{ item }}.user"
+    mode: "0644"
+    force: false
+  loop:
+    - zshenv
+    - zprofile
+    - zshrc
+
+- name: Deploy zsh loader files
+  ansible.builtin.template:
+    src: "zsh/loader.j2"
+    dest: "{{ ansible_user_dir }}/.{{ item }}"
+    mode: "0644"
+  loop:
+    - zshenv
+    - zprofile
+    - zshrc

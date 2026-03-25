@@ -1,0 +1,15 @@
+---
+- name: Setup ssh configuration
+  ansible.builtin.import_tasks: ssh.yaml
+
+- name: Setup git configuration
+  ansible.builtin.import_tasks: git.yaml
+
+- name: Setup Oh My Zsh
+  ansible.builtin.import_tasks: ohmyzsh.yaml
+
+- name: Setup zsh configuration
+  ansible.builtin.import_tasks: zsh.yaml
+
+- name: Setup iTerm2 configuration
+  ansible.builtin.import_tasks: iterm2.yaml

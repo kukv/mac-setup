@@ -1,0 +1,45 @@
+---
+- name: Create mise config directory
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/mise"
+    state: directory
+    mode: "0755"
+
+- name: Deploy mise config
+  ansible.builtin.template:
+    src: config.toml.j2
+    dest: "{{ ansible_user_dir }}/.config/mise/config.toml"
+    mode: "0644"
+
+- name: Install mise tools
+  ansible.builtin.command:
+    cmd: mise install --yes
+  register: mise_install
+  changed_when: "'installed' in mise_install.stderr"
+  retries: 3
+  delay: 10
+  until: mise_install is succeeded
+
+- name: Install default Go packages
+  ansible.builtin.command:
+    cmd: mise exec go -- go install {{ item }}
+  loop: "{{ go.default_packages }}"
+  changed_when: false
+
+- name: Enable Node corepack
+  ansible.builtin.command:
+    cmd: mise exec node -- corepack enable
+  changed_when: false
+
+- name: Create Neovim config directory
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/nvim"
+    state: directory
+    mode: "0755"
+
+- name: Clone LazyVim starter
+  ansible.builtin.git:
+    repo: https://github.com/LazyVim/starter.git
+    dest: "{{ ansible_user_dir }}/.config/nvim"
+    depth: 1
+    force: false

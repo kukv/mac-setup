@@ -1,0 +1,49 @@
+---
+- name: Setup macOS
+  hosts: localhost
+
+  environment:
+    HOMEBREW_GITHUB_API_TOKEN: "{{ github.token }}"
+    GITHUB_TOKEN: "{{ github.token }}"
+
+  pre_tasks:
+    - name: Validate required variables
+      ansible.builtin.assert:
+        that:
+          - github.token is defined
+          - git.user.name is defined
+          - git.user.email is defined
+          - git.user.signing_key is defined
+        fail_msg: "Required variables are missing. Create ~/.local/etc/extra_vars.yaml from extra_vars.yaml.example"
+      tags:
+        - always
+
+    - name: Install Ansible Galaxy collections
+      ansible.builtin.import_tasks: tasks/requirement_ansible_module.yaml
+      tags:
+        - always
+
+    - name: Update & upgrade Homebrew
+      ansible.builtin.import_tasks: tasks/homebrew_update.yaml
+      tags:
+        - always
+
+  roles:
+    - role: homebrew
+      tags:
+        - homebrew
+    - role: macos
+      tags:
+        - macos
+    - role: mise
+      tags:
+        - mise
+    - role: scheduled
+      tags:
+        - scheduled
+
+  post_tasks:
+    - name: Cleanup Homebrew
+      ansible.builtin.import_tasks: tasks/homebrew_cleanup.yaml
+      tags:
+        - always
