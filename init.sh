@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/zsh
 set -euo pipefail
 
 usage() {
   cat <<'EOF'
 Usage:
-  bash init.sh [options]
-  curl -sf https://raw.githubusercontent.com/kukv/mac-setup/main/init.sh | bash -s -- [options]
+  zsh init.sh [options]
+  curl -sf https://raw.githubusercontent.com/kukv/mac-setup/main/init.sh | zsh -s -- [options]
 
 Options:
   -b, --branch <branch>  Specify the branch to use (default: main)

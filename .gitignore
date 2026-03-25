@@ -1,0 +1,14 @@
+# IDE
+.idea/
+
+# Claude Code
+.claude/
+
+# macOS
+.DS_Store
+
+# Ansible
+*.retry
+
+# Extra vars (contains secrets)
+extra_vars.yaml

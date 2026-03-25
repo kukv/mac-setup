@@ -1,9 +1,13 @@
 ---
 zsh:
+  ohmyzsh:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    version: "master"
   theme: alien
   custom_theme:
     name: alien
     repo: https://github.com/eendroroy/alien.git
+    version: "2.1.2"
   alien:
     sections_left:
       - time
@@ -29,9 +33,13 @@ zsh:
   custom_plugins:
     - name: zsh-syntax-highlighting
       repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+      version: "0.8.0"
     - name: zsh-completions
       repo: https://github.com/zsh-users/zsh-completions.git
+      version: "0.36.0"
     - name: zsh-autosuggestions
       repo: https://github.com/zsh-users/zsh-autosuggestions.git
+      version: "v0.7.1"
     - name: zsh-history-substring-search
       repo: https://github.com/zsh-users/zsh-history-substring-search.git
+      version: "v1.1.0"
