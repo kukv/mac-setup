@@ -3,7 +3,7 @@ zsh:
   ohmyzsh:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     version: "master"
-  theme: alien
+  theme: alien/alien
   custom_theme:
     name: alien
     repo: https://github.com/eendroroy/alien.git

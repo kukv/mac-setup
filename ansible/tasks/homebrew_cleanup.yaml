@@ -1,8 +1,6 @@
 ---
 - name: Cleanup Homebrew
-  community.general.homebrew:
-    cleanup: true
-  retries: 3
-  delay: 5
+  ansible.builtin.command:
+    cmd: brew cleanup
   register: result
-  until: result is succeeded
+  changed_when: result.stdout | length > 0
