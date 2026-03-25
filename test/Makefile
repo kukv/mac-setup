@@ -4,6 +4,7 @@ SSH_USER     := admin
 SSH_PASS     := admin
 SSH_OPTS     := -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=5 -o LogLevel=ERROR -o PubkeyAuthentication=no -o PreferredAuthentications=password
 PROJECT_ROOT := $(shell cd $(CURDIR)/.. && pwd)
+DISK_SIZE    := 100
 TAGS         ?=
 
 .PHONY: help check-deps create start start-gui provision test teardown ssh status
@@ -39,7 +40,8 @@ create: check-deps ## VM を作成 (初回はイメージダウンロードに�
 	else \
 		echo "==> macOS イメージをクローン中..."; \
 		tart clone $(IMAGE) $(VM_NAME); \
-		echo "==> VM '$(VM_NAME)' を作成しました"; \
+		tart set $(VM_NAME) --disk-size $(DISK_SIZE); \
+		echo "==> VM '$(VM_NAME)' を作成しました (disk: $(DISK_SIZE)GB)"; \
 	fi
 
 start: create ## VM をヘッドレスモードで起動 (ターミナルをブロック)
