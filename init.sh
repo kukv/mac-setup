@@ -66,13 +66,6 @@ if ! command -v ansible &>/dev/null; then
   brew install ansible < /dev/null
 fi
 
-echo "==> Installing Ansible collections..."
-REQUIREMENTS_TMP=$(mktemp)
-trap "rm -f '${REQUIREMENTS_TMP}'" EXIT
-curl -sfL "https://raw.githubusercontent.com/kukv/mac-setup/${BRANCH}/ansible/requirements.yaml" \
-  -o "${REQUIREMENTS_TMP}"
-ansible-galaxy collection install -r "${REQUIREMENTS_TMP}"
-
 EXTRA_VARS_FILE="${HOME}/.local/etc/extra_vars.yaml"
 EXTRA_VARS_OPTS=()
 if [[ -f "${EXTRA_VARS_FILE}" ]]; then
