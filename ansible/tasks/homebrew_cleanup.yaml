@@ -2,3 +2,7 @@
 - name: Cleanup Homebrew
   community.general.homebrew:
     cleanup: true
+  retries: 3
+  delay: 5
+  register: result
+  until: result is succeeded

@@ -12,5 +12,15 @@
   "major": {
     "minimumReleaseAge": "7 days",
     "automerge": false
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["ansible/roles/macos/defaults/main\\.yaml$"],
+      "matchStrings": [
+        "repo: https://github\\.com/(?<depName>[^/]+/[^.]+)\\.git\\s+version: \"?(?<currentValue>[^\"\\s]+)\"?"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
+  ]
 }

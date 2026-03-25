@@ -25,13 +25,13 @@ cp extra_vars.yaml.example ~/.local/etc/extra_vars.yaml
 ### 3. セットアップ実行
 
 ```bash
-curl -sf https://raw.githubusercontent.com/kukv/mac-setup/main/init.sh | bash
+curl -sf https://raw.githubusercontent.com/kukv/mac-setup/main/init.sh | zsh
 ```
 
 ブランチを指定する場合:
 
 ```bash
-curl -sf https://raw.githubusercontent.com/kukv/mac-setup/main/init.sh | bash -s -- -b <branch>
+curl -sf https://raw.githubusercontent.com/kukv/mac-setup/main/init.sh | zsh -s -- -b <branch>
 ```
 
 ## 初回セットアップ後の手動作業

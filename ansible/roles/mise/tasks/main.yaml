@@ -24,7 +24,7 @@
   ansible.builtin.command:
     cmd: mise exec go -- go install {{ item }}
   loop: "{{ go.default_packages }}"
-  changed_when: false
+  changed_when: false  # go install は常に最新をダウンロードするため changed 判定不可
 
 - name: Enable Node corepack
   ansible.builtin.command:
