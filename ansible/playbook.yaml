@@ -41,9 +41,3 @@
     - role: scheduled
       tags:
         - scheduled
-
-  post_tasks:
-    - name: Cleanup Homebrew
-      ansible.builtin.import_tasks: tasks/homebrew_cleanup.yaml
-      tags:
-        - always

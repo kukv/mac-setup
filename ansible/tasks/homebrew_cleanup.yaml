@@ -1,6 +1,0 @@
----
-- name: Cleanup Homebrew
-  ansible.builtin.command:
-    cmd: brew cleanup
-  register: result
-  changed_when: result.stdout | length > 0
