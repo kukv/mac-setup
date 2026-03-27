@@ -1,4 +1,11 @@
 ---
+- name: Tap third-party Homebrew repositories
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - cirruslabs/cli
+
 - name: Install Homebrew formulae
   community.general.homebrew:
     name: "{{ item }}"

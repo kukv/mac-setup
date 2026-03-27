@@ -10,6 +10,17 @@
 - [1Password](https://1password.com/) - アカウントログイン + SSH Agent 有効化
 - macOS システム設定 - DNS, Dock, Finder 等は GUI から設定
 
+## sudo が必要なアプリ
+
+インストール時に sudo を要求するため、公式サイトからダウンロードする。
+各アプリの自動更新機能で更新されるため、Homebrew での管理は不要。
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Zoom](https://zoom.us/download)
+- [Google Drive](https://www.google.com/drive/download/)
+- [Microsoft Office](https://www.office.com/)
+- [Parallels Desktop](https://www.parallels.com/products/desktop/)
+
 ## Homebrew でインストールできないアプリ
 
 - [Kindle](https://www.amazon.co.jp/b?ie=UTF8&node=2250731051)
