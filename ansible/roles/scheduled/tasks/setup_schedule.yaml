@@ -1,8 +1,39 @@
 ---
-- name: Check extra_vars.yaml exists
+- name: Create bin directory
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: Create etc directory
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.local/etc"
+    state: directory
+    mode: "0755"
+
+- name: Deploy ansible-pull wrapper script
+  ansible.builtin.template:
+    src: mac-setup-pull.sh.j2
+    dest: "{{ ansible_facts.user_dir }}/.local/bin/mac-setup-pull.sh"
+    mode: "0755"
+
+- name: Stat secret files
   ansible.builtin.stat:
-    path: "{{ ansible_facts.user_dir }}/.local/etc/extra_vars.yaml"
-  register: extra_vars_stat
+    path: "{{ ansible_facts.user_dir }}/.local/etc/{{ item }}"
+  register: secret_files
+  loop:
+    - mac-setup.env
+    - extra_vars.yaml
+
+- name: Ensure secret files are mode 0600
+  ansible.builtin.file:
+    path: "{{ item.stat.path }}"
+    mode: "0600"
+    state: file
+  loop: "{{ secret_files.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.stat.exists
 
 - name: Deploy ansible-pull LaunchAgent
   ansible.builtin.template:

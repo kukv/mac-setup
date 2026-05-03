@@ -22,7 +22,17 @@ cp extra_vars.yaml.example ~/.local/etc/extra_vars.yaml
 # エディタで値を編集
 ```
 
-### 3. セットアップ実行
+### 3. mac-setup.env の作成 (機密値)
+
+GitHub Token などの機密値は `extra_vars.yaml` ではなく `~/.local/etc/mac-setup.env` に置く（ps/argv 露出を避けるため）。
+
+```bash
+cp mac-setup.env.example ~/.local/etc/mac-setup.env
+chmod 0600 ~/.local/etc/mac-setup.env
+# エディタで値を編集
+```
+
+### 4. セットアップ実行
 
 ```bash
 curl -sf https://raw.githubusercontent.com/kukv/mac-setup/main/init.sh | zsh
