@@ -1,10 +1,4 @@
 ---
-github:
-  # GitHub Personal Access Token
-  # Homebrew の API レート制限回避 (HOMEBREW_GITHUB_API_TOKEN) と
-  # ansible-pull のプライベートリポジトリアクセス (GITHUB_TOKEN) に使用
-  token: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
 git:
   user:
     # git config user.name に設定される
@@ -14,3 +8,9 @@ git:
     # git config user.signingkey に設定される (SSH 署名用の公開鍵)
     # 1Password SSH Agent 経由でコミット署名に使用
     signing_key: ssh-ed25519 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+# GitHub Personal Access Token などの機密値は extra_vars.yaml ではなく
+# ~/.local/etc/mac-setup.env (KEY=VALUE 形式, 0600) に置くこと。
+# extra_vars.yaml は Ansible 実行時に --extra-vars でコマンドライン展開され
+# ps/argv 経由で値が露出するリスクがあるため。
+# 例: mac-setup.env.example を参照

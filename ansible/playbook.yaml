@@ -2,15 +2,10 @@
 - name: Setup macOS
   hosts: localhost
 
-  environment:
-    HOMEBREW_GITHUB_API_TOKEN: "{{ github.token }}"
-    GITHUB_TOKEN: "{{ github.token }}"
-
   pre_tasks:
     - name: Validate required variables
       ansible.builtin.assert:
         that:
-          - github.token is defined
           - git.user.name is defined
           - git.user.email is defined
           - git.user.signing_key is defined

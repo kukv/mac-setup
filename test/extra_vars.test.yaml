@@ -1,10 +1,7 @@
 ---
 # Tart VM テスト用のダミー変数
 # 実際の認証情報は含まないこと
-
-github:
-  # ダミートークン (Homebrew は未認証でも動作するがレート制限あり)
-  token: ghp_dummy_token_for_tart_vm_testing
+# GitHub Token は mac-setup.env に分離されたためここには含まない
 
 git:
   user:

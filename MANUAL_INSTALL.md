@@ -4,6 +4,7 @@
 
 - [Xcode Command Line Tools](https://developer.apple.com/xcode/) - `xcode-select --install`
 - `~/.local/etc/extra_vars.yaml` の作成 - `extra_vars.yaml.example` を参照
+- `~/.local/etc/mac-setup.env` の作成 (chmod 0600) - `mac-setup.env.example` を参照 (GitHub Token など機密値)
 
 ## 初回セットアップ後
 
