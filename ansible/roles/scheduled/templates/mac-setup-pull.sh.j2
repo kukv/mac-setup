@@ -4,6 +4,11 @@ set -euo pipefail
 # ansible-pull のラッパー。GITHUB_TOKEN 等の機密を ps/argv に露出させずに渡すため、
 # 環境変数ファイルを source してから ansible-pull を exec する。
 
+# ~/.local/bin を PATH に追加。
+# claude 等のツールがここにインストールされるため、ansible タスクの
+# `which claude` 等で正しく検出されないと毎回再インストールが走ってしまう。
+export PATH="${HOME}/.local/bin:${PATH}"
+
 ENV_FILE="${HOME}/.local/etc/mac-setup.env"
 EXTRA_VARS_FILE="${HOME}/.local/etc/extra_vars.yaml"
 
